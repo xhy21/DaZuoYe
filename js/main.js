@@ -15,8 +15,8 @@ var title = this.current.title;
 this.list.push(todo);
   },
   update:function(){},
-  remove:function(){
-
+  remove:function(id){
+this.list.splice(id,1);
   }
 }
 

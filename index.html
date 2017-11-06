@@ -27,6 +27,7 @@
         未完成
     <div v-for="todo in list" class="item">
       {{todo.title}}
+      <button @click="remove(index)">删除</button>
     </div>
   </div>
   </div>
