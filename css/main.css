@@ -19,7 +19,7 @@ input{
   display:block;
   width:100%;
 }
-.warp{
+.wrap{
   max-width: 500px;
   margin: 0 auto;
 }
