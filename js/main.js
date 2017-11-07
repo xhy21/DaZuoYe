@@ -11,6 +11,11 @@ el:'#main',
   current:{}
 
 },
+
+mounted:function(){
+  this.list=ms.get('list') || this.list;
+
+},
 methods:{
   merge:function(){
     var is_update,id;
@@ -23,18 +28,20 @@ methods:{
 
     }else{
       var title = this.current.title;
-          if (!title&&title!==0)  alert("输入的内容不能为空！");
+          if (!title&&title!==0)  alert("不能存储相同内容！");
           var todo = copy(this.current);
           todo.id=this.next_id();
       this.list.push(todo);
     }
-this.reset_current();
+        ms.set('list',this.list);
+      this.reset_current();
 
   },
 
   remove:function(id){
     var index= this.find_index(id);
     this.list.splice(index,1);
+    ms.set('list',this.list);
 
   },
   next_id:function(){
@@ -52,8 +59,20 @@ this.reset_current();
       return item.id == id;
     })
   }
-}
-
+},
+     watch:{
+       list:{
+         deep:true,
+         handler:function(n,o){
+           if(n){
+             ms.set('list',n);
+           }
+           else{
+             ms.set('list',[]);
+           }
+         }
+       }
+     }
 });
 
 })();
