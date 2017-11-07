@@ -33,7 +33,7 @@ methods:{
           todo.id=this.next_id();
       this.list.push(todo);
     }
-        ms.set('list',this.list);
+
       this.reset_current();
 
   },
@@ -41,7 +41,7 @@ methods:{
   remove:function(id){
     var index= this.find_index(id);
     this.list.splice(index,1);
-    ms.set('list',this.list);
+
 
   },
   next_id:function(){
@@ -58,6 +58,11 @@ methods:{
     return this.list.findIndex(function(item) {
       return item.id == id;
     })
+  },
+  toggle_complete:function(id){
+    var i=this.find_index(id);
+    Vue.set(this.list[i],'completed',!this.list[i].completed);
+
   }
 },
      watch:{

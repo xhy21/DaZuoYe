@@ -25,10 +25,12 @@
   <div class="task-list">
     <div class="wrap">
         未完成
-    <div v-for="(todo,index) in list" class="item">
+    <div v-if="!todo.completed" v-for="(todo,index) in list" class="item">
+
       {{todo.title}}
       <button @click="remove(todo.id)">删除</button>
       <button @click="set_current(todo)">修改</button>
+      <button @click="toggle_complete(todo.id)">啊哈哈哈，完成了~</button>
     </div>
   </div>
   </div>
@@ -36,7 +38,13 @@
     <div class="wrap">
   已完成
 
-    <div class="complete item">11111</div>
+  <div v-if="todo.completed" v-for="(todo,index) in list" class="item completed">
+
+    {{todo.title}}
+    <button @click="remove(todo.id)">删除</button>
+    <button @click="set_current(todo)">修改</button>
+    <button @click="toggle_complete(todo.id)">点错了，其实未完成</button>
+  </div>
   </div>
   </div>
 
