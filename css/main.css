@@ -9,7 +9,7 @@
 .navbar,.header{
   text-align:center;
 }
-input,button{
+input,button,textarea{
 
   border:1px solid rgba(0,0,0,.1);
   border-radius:3px;
