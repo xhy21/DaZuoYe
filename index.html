@@ -44,17 +44,18 @@
 
     {{todo.title}}
     <button @click="remove(todo.id)">删除</button>
-    <button @click="set_current(todo)">修改</button>
+    <button @click="set_current(todo)">查看或修改</button>
     <button @click="toggle_complete(todo.id)">点错了，其实未完成</button>
   </div>
   </div>
   </div>
   </div>
+  <audio id="alert-sound"><source src="./sound/1.mp3"></audio>
   <template id="task-tpl">
     <div  class="item">
   {{todo.title}}
       <button @click="action('remove',todo.id)">删除</button>
-      <button @click="action('set_current',todo)">修改</button>
+      <button @click="action('set_current',todo)">查看或修改</button>
       <button @click="action('toggle_complete',todo.id)">啊哈哈哈，完成了~</button>
     </div>
   </template>

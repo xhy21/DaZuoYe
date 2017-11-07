@@ -2,6 +2,7 @@
   'use strict';
  var Event = new Vue();
 
+var alert_sound =document.getElementById("alert-sound")
   function copy(obj){
     return Object.assign({},obj);
   }
@@ -26,6 +27,11 @@ el:'#main',
 mounted:function(){
   var me = this;
   this.list=ms.get('list') || this.list;
+
+  setInterval(function(){
+  me.check_alerts();
+},1000);
+
   Event.$on('remove',function(id){
   if(id){
     me.remove(id);
@@ -46,6 +52,22 @@ if(id){
 
 },
 methods:{
+check_alerts:function(){
+  var me =this;
+  this.list.forEach(function(row,i){
+    var alert_at =row.alert_at;
+    if(!alert_at || row.alert_confirmed) return;
+    var alert_at=(new Date(alert_at)).getTime();
+    var now =(new Date()).getTime();
+
+    if(now >= alert_at){
+      alert_sound.play();
+      var confirmed =confirm(row.title);
+      Vue.set(me.list[i],'alert_confirmed',confirmed);
+    }
+  })
+},
+
   merge:function(){
     var is_update,id;
   is_update=id=this.current.id;

@@ -39,3 +39,6 @@ input{
   color:#444333;
   font-size:18px;
 }
+#alert-sound{
+  display: none;
+}
