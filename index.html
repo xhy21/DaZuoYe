@@ -16,18 +16,19 @@
   <div class="header">
 副标题
   </div>
-  <form @submit.prevent="add" id="task-form">
+  <form @submit.prevent="merge" id="task-form">
     <div class="wrap">
-      <input v-model="current.title" id="task-input" type="text">
+      <input v-model="current.title" id="task-input" type="text" autocomplete="off">
       <button type="submit">submit</button>
   </div>
 </form>
   <div class="task-list">
     <div class="wrap">
         未完成
-    <div v-for="todo in list" class="item">
+    <div v-for="(todo,index) in list" class="item">
       {{todo.title}}
       <button @click="remove(index)">删除</button>
+      <button @click="set_current(todo)">修改</button>
     </div>
   </div>
   </div>
