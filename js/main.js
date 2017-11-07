@@ -1,9 +1,20 @@
 ;(function(){
   'use strict';
+ var Event = new Vue();
 
   function copy(obj){
     return Object.assign({},obj);
   }
+  Vue.component('task',{
+    template:'#task-tpl',
+    props:['todo'],
+    methods:{
+      action:function(name,params){
+        Event.$emit(name,params);
+      }
+    }
+
+  })
 new Vue({
 el:'#main',
   data:{
@@ -13,7 +24,25 @@ el:'#main',
 },
 
 mounted:function(){
+  var me = this;
   this.list=ms.get('list') || this.list;
+  Event.$on('remove',function(id){
+  if(id){
+    me.remove(id);
+  }
+});
+
+Event.$on('toggle_complete',function(id){
+if(id){
+  me.toggle_complete(id);
+}
+});
+
+Event.$on('set_current',function(id){
+if(id){
+  me.set_current(id);
+}
+});
 
 },
 methods:{
