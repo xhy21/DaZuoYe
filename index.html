@@ -19,11 +19,12 @@
   <form @submit.prevent="merge" id="task-form">
     <div class="wrap">
       <input v-model="current.title" id="task-input" type="text" autocomplete="off">
-    <div class="detail">
+    <div v-if="current.id" class="detail">
        <textarea v-model="current.desc"></textarea>
        <input v-model="current.alert_at" type="datetime-local" >
+       <button type="submit">submit</button>
     </div>
-      <button type="submit">submit</button>
+
   </div>
 </form>
   <div class="task-list">
@@ -46,6 +47,7 @@
     <button @click="remove(todo.id)">删除</button>
     <button @click="set_current(todo)">查看或修改</button>
     <button @click="toggle_complete(todo.id)">点错了，其实未完成</button>
+
   </div>
   </div>
   </div>
@@ -55,8 +57,12 @@
     <div  class="item">
   {{todo.title}}
       <button @click="action('remove',todo.id)">删除</button>
-      <button @click="action('set_current',todo)">查看或修改</button>
+      <button @click="action('set_current',todo)">修改</button>
       <button @click="action('toggle_complete',todo.id)">啊哈哈哈，完成了~</button>
+      <button @click="action('toggle_detail',todo.id)">查看详情</button>
+      <div v-if="todo.show_detail" class="detail">
+  {{todo.desc||"暂无详细说明"}}
+</div>
     </div>
   </template>
   <script src="lib/vue.js"> </script>

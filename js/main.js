@@ -20,6 +20,7 @@ new Vue({
 el:'#main',
   data:{
   list:[],
+  last_id:0,
   current:{}
 
 },
@@ -27,6 +28,7 @@ el:'#main',
 mounted:function(){
   var me = this;
   this.list=ms.get('list') || this.list;
+  this.last_id=ms.get('last_id')||this.last_id;
 
   setInterval(function(){
   me.check_alerts();
@@ -50,6 +52,11 @@ if(id){
 }
 });
 
+Event.$on('toggle_detail',function(id){
+if(id){
+  me.toggle_detail(id);
+}
+});
 },
 methods:{
 check_alerts:function(){
@@ -81,12 +88,20 @@ check_alerts:function(){
       var title = this.current.title;
           if (!title&&title!==0)  alert("不能存储相同内容！");
           var todo = copy(this.current);
-          todo.id=this.next_id();
-      this.list.push(todo);
+          this.last_id++;
+          ms.set('last_id',this.last_id);
+          todo.id=this.last_id;
+          this.list.push(todo);
     }
 
       this.reset_current();
 
+  },
+
+  toggle_detail:function(id){
+    var index = this.find_index(id);
+
+    Vue.set(this.list[index],'show_detail',!this.list[index].show_detail)
   },
 
   remove:function(id){
