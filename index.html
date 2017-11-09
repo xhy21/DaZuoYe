@@ -4,7 +4,7 @@
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>???</title>
+  <title>剁手计划</title>
 <link rel="stylesheet" href="lib/normalize.css">
 <link rel="stylesheet" href="css/main.css">
   </head>
@@ -20,7 +20,7 @@
 
   <form @submit.prevent="merge" id="task-form">
     <div class="wrap">
-      <input v-model="current.title" id="task-input" type="text" autocomplete="off">
+      <input v-model="current.title" id="task-input" type="text" autocomplete="off" input placeholder="点击此处添加一个新的活动 按回车键确认☺" >
 
     <div v-if="current.id" class="detail">
 
@@ -34,7 +34,7 @@
 </form>
   <div class="task-list">
     <div class="wrap">
-      <div class="segment-title">今日活动</div>
+      <div class="segment-title" style="color:#FF4040">☑ 今日活动</div>
 
         <task :todo="todo"
                v-if="!todo.completed"
@@ -44,11 +44,11 @@
   </div>
   <div class="task-list">
     <div class="wrap">
-      <div class="segment-title">已结束活动</div>
+      <div class="segment-title">〼 已结束活动</div>
   <div v-if="todo.completed" v-for="(todo,index) in list" class="item completed" >
-    <div  @click="action('toggle_complete',todo.id)" class="toggle-complete"></div>
+    <div  @click="action('toggle_complete',todo.id)" class="toggle-complete">✔</div>
+     {{todo.title}}
     <button @click="toggle_complete(todo.id)">未结束</button>
-    {{todo.title}}
     <button @click="remove(todo.id)">删除</button>
 
       </div>
@@ -69,6 +69,10 @@
       </div>
     </div>
   </template>
+
+    <img src="img/1.jpg" alt="" style="margin-left:38%">
+
+
   <script src="lib/vue.js"> </script>
   <script src="js/myStorage.js"></script>
   <script src="js/main.js"> </script>

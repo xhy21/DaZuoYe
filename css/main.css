@@ -103,8 +103,8 @@ button.primary {
 }
 
 .toggle-complete:hover {
-    background: #3e9bd2;
-    border-color: #3587b7;
+    background: #FF6A6A;
+    border-color: #FA8072;
 }
 
 .completed .toggle-complete {
@@ -114,7 +114,13 @@ button.primary {
 
 .segment-title {
     color: #aaa;
-    margin-top: 15px;
+    margin-top: 40px;
     margin-bottom: 5px;
     font-weight: lighter;
+
+}
+button{
+  float: right;
+  margin-top: 4.5px;
+  margin-right: 1.5%;
 }

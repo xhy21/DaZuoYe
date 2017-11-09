@@ -86,7 +86,7 @@ check_alerts:function(){
 
     }else{
       var title = this.current.title;
-          if (!title&&title!==0)  alert("不能存储相同内容！");
+          if (!title&&title!==0) ;
           var todo = copy(this.current);
           this.last_id++;
           ms.set('last_id',this.last_id);
