@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+
 <div id="main">
   <div class="navbar">
 <h1>双十一活动日程计划表</h1>
@@ -17,7 +18,8 @@
 剁手节快乐~~~
   </div>
 
-
+<img src="./img/cat.gif" alt="" style="margin-left:5%;position:absolute;width:15%;margin-top:10px;">
+<img src="./img/dog.gif" alt="" style="margin-left:75%;position:absolute;width:15%;margin-top:10px;">
   <form @submit.prevent="merge" id="task-form">
     <div class="wrap">
       <input v-model="current.title" id="task-input" type="text" autocomplete="off" input placeholder="点击此处添加一个新的活动 按回车键确认☺" >
@@ -42,6 +44,7 @@
         ></task>
        </div>
   </div>
+
   <div class="task-list">
     <div class="wrap">
       <div class="segment-title">〼 已结束活动</div>
@@ -70,7 +73,7 @@
     </div>
   </template>
 
-    <img src="img/1.jpg" alt="" style="margin-left:38%">
+    <img src="img/1.jpg" alt="" style="margin-left:38%;width:20%;margin-top:10%">
 
 
   <script src="lib/vue.js"> </script>
